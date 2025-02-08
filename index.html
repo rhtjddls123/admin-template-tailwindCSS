@@ -14,10 +14,16 @@
     <title>Admin Template</title>
   </head>
   <body class="bg-gray-100">
-    <div class="flex h-screen">
-      <aside class="bg-gray-800 w-64 text-white py-7 px-2 space-y-6">
-        <div class="px-4 mb-6">
+    <div class="flex">
+      <aside
+        id="sidebar"
+        class="bg-gray-800 w-64 text-white py-7 px-2 space-y-6 z-10 inset-y-0 left-0 -translate-x-full lg:translate-x-0 transition-transform duration-200 absolute lg:relative"
+      >
+        <div class="flex justify-between items-center px-4 mb-6">
           <h2 class="font-semibold text-2xl">대시보드</h2>
+          <button id="closeSidebar" class="text-white lg:hidden">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <nav class="flex flex-col">
           <a
@@ -46,15 +52,20 @@
         <header
           class="flex justify-between items-center px-6 py-2 h-16 bg-white border-b-4 border-indigo-600"
         >
-          <div class="relative">
-            <span class="absolute left-0 inset-y-0 pl-3 flex items-center"
-              ><i class="fas fa-search text-gray-500"></i
-            ></span>
-            <input
-              class="focus:border-indigo-600 h-10 w-64 pl-10 pr-4 rounded-md"
-              type="text"
-              placeholder="검색"
-            />
+          <div class="flex items-center">
+            <button id="sidebarToggle" class="text-gray-500 lg:hidden p-2 mr-4">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="relative">
+              <span class="absolute left-0 inset-y-0 pl-3 flex items-center"
+                ><i class="fas fa-search text-gray-500"></i
+              ></span>
+              <input
+                class="focus:border-indigo-600 h-10 w-64 pl-10 pr-4 rounded-md"
+                type="text"
+                placeholder="검색"
+              />
+            </div>
           </div>
           <div class="flex items-center gap-x-4">
             <button class="text-gray-600"><i class="fas fa-bell"></i></button>
@@ -66,7 +77,7 @@
         <main class="flex-1 bg-gray-200">
           <div class="container mx-auto px-6 py-8">
             <h3 class="text-gray-700 text-3xl font-medium">대시보드</h3>
-            <div class="mt-8 grid grid-cols-3 gap-6">
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div class="flex items-center bg-white rounded-md px-5 py-6">
                 <div
                   class="flex items-center justify-center rounded-full bg-indigo-600 w-12 h-12 bg-opacity-75"
@@ -231,5 +242,13 @@
         </main>
       </div>
     </div>
+    <script>
+      document.getElementById("sidebarToggle").addEventListener("click", () => {
+        document.getElementById("sidebar").classList.toggle("-translate-x-full");
+      });
+      document.getElementById("closeSidebar").addEventListener("click", () => {
+        document.getElementById("sidebar").classList.add("-translate-x-full");
+      });
+    </script>
   </body>
 </html>
